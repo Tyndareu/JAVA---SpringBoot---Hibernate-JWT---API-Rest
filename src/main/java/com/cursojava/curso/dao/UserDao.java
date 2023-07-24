@@ -7,5 +7,9 @@ import com.cursojava.curso.models.User;
 public interface UserDao {
 
     List<User> getUsers();
+
+    void delete(Long id);
+
+    void save(User user);
     
 }

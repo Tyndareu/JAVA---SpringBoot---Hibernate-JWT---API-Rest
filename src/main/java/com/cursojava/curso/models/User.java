@@ -2,11 +2,14 @@ package com.cursojava.curso.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.GenerationType;
 
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Entity
 @Table
@@ -14,6 +17,7 @@ import lombok.Setter;
 @Getter
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
