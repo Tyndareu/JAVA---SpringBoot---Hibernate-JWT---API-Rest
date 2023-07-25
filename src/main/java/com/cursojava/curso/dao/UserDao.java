@@ -12,6 +12,6 @@ public interface UserDao {
 
     void save(User user);
 
-    boolean validateUser(User user);
+    User validateUser(User user);
     
 }

@@ -20,6 +20,26 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>javax.xml.bind</artifactId>
+			<version>2.3.0.LIFERAY-PATCHED-2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+
+	<dependency>
+		<groupId>de.mkammerer</groupId>
+		<artifactId>argon2-jvm</artifactId>
+		<version>2.5</version>
+	</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.28</version>

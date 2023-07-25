@@ -3,12 +3,11 @@ package com.cursojava.curso.controllers;
 import org.springframework.web.bind.annotation.RestController;
 import com.cursojava.curso.dao.UserDao;
 import com.cursojava.curso.models.User;
+import com.cursojava.curso.utils.JWTUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 public class AuthController {
@@ -16,12 +15,20 @@ public class AuthController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @PostMapping("/login")
-    public @ResponseBody ResponseEntity<?> login(@RequestBody User user) {
-        if (userDao.validateUser(user)) {
-            return ResponseEntity.ok().body("{\"success\": true, \"message\": \"Login correcto\"}");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"Credenciales inválidas\"}");
+    public String login(@RequestBody User user) {
+        User validatedUser = userDao.validateUser(user);
+        if (validatedUser != null) {
+            // Si el usuario es válido, creamos el token JWT
+            String tokenJwt = jwtUtil.create(validatedUser.getId().toString(), validatedUser.getEmail());
+            return tokenJwt;
+        }
+        else {
+            return "Error";
+        
         }
     }
 }

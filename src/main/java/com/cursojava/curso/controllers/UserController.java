@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cursojava.curso.dao.UserDao;
 import com.cursojava.curso.models.User;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
 @RestController
 public class UserController {
 
@@ -37,6 +40,11 @@ public class UserController {
 
     @PostMapping("/users")
     public void createUser(@RequestBody User user) {
+    
+        // Generar el hash de la contraseña utilizando Argon2
+        String hashedPassword = Argon2Factory.create().hash(10, 1024, 1, user.getPassword());
+    
+        user.setPassword(hashedPassword);
         userDao.save(user);
     }
 
