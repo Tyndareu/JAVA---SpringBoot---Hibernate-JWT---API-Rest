@@ -41,10 +41,10 @@ public class UserController {
     @PostMapping("/users")
     public void createUser(@RequestBody User user) {
     
-        // Generar el hash de la contraseña utilizando Argon2
-        String hashedPassword = Argon2Factory.create().hash(10, 1024, 1, user.getPassword());
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hash = argon2.hash(1, 1024, 1, user.getPassword());
     
-        user.setPassword(hashedPassword);
+        user.setPassword(hash);
         userDao.save(user);
     }
 

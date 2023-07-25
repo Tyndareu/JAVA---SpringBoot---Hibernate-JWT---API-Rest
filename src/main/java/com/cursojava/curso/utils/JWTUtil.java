@@ -4,8 +4,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -17,16 +15,14 @@ import java.util.Date;
 @Component
 public class JWTUtil {
 
-    @Value("${security.jwt.secret}")
+    @Value("clave")
     private String key;
 
-    @Value("${security.jwt.issuer}")
+    @Value("Main")
     private String issuer;
 
-    @Value("${security.jwt.ttlMillis}")
+    @Value("3600000")
     private long ttlMillis;
-
-    private final Logger log = LoggerFactory.getLogger(JWTUtil.class);
 
     public String create(String id, String subject) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
