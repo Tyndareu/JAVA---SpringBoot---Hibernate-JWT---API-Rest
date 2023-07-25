@@ -21,7 +21,7 @@ async function loadTable() {
                           <td>${user.id}</td>
                           <td>${user.name} ${user.surname}</td>
                           <td>${user.email}</td>
-                          <td>${user.phone}</td>
+                          <td>${user.phone ? user.phone : '-'}</td>
                           <td>
                             <a onclick="deleteUser(${user.id})" href="#" class="btn btn-danger btn-circle btn-sm">
                                <i class="fas fa-trash"></i>
