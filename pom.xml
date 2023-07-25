@@ -18,7 +18,7 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-
+	
 		<dependency>
 			<groupId>com.liferay</groupId>
 			<artifactId>javax.xml.bind</artifactId>
