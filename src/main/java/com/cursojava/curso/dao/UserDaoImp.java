@@ -50,10 +50,8 @@ public class UserDaoImp implements UserDao {
     
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         if (argon2.verify(storedUser, user.getPassword())) {
-            System.out.println("son iguales");
             return users.get(0);
         } else {
-            System.out.println("No son iguales");
             return null;
         }
     }

@@ -4,14 +4,16 @@ $(document).ready(function () {
   $('#dataTable').DataTable();
 });
 
+const getHeaders = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': sessionStorage.token
+};
 async function loadTable() {
   try {
     const response = await fetch('users', {
       method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: getHeaders
     });
     const users = await response.json();
 
@@ -45,10 +47,7 @@ async function deleteUser(id) {
   try {
     const response = await fetch(`user/${id}`, {
       method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: getHeaders
     });
 
     if (response.ok) {

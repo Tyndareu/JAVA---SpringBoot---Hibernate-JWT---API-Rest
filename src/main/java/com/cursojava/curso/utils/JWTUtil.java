@@ -50,33 +50,42 @@ public class JWTUtil {
     }
 
     public String getValue(String jwt) {
+        if (jwt == null) {
+            return null; // El token es null
+        }
+    
         Claims claims = Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(key))
                 .parseClaimsJws(jwt)
                 .getBody();
-
-        // Verificar si el token ha expirado antes de obtener el valor del campo
-        // "subject"
+    
+        // Verificar si el token ha expirado antes de obtener el valor del campo "subject"
         Date expirationDate = claims.getExpiration();
         if (expirationDate != null && expirationDate.before(new Date())) {
             return null; // El token ha expirado
         }
-
+    
         return claims.getSubject();
     }
+    
 
     public String getKey(String jwt) {
+        if (jwt == null) {
+            return null; // El token es null
+        }
+    
         Claims claims = Jwts.parser()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(key))
                 .parseClaimsJws(jwt)
                 .getBody();
-
+    
         // Verificar si el token ha expirado antes de obtener el valor del campo "id"
         Date expirationDate = claims.getExpiration();
         if (expirationDate != null && expirationDate.before(new Date())) {
             return null; // El token ha expirado
         }
-
+    
         return claims.getId();
     }
+    
 }
